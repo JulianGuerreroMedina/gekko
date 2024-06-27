@@ -1,0 +1,101 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, table, th, td {margin: 0; padding: 0;}
+fieldset, img, abbr {border: 0;}
+address, caption, cite, code, dfn, em, h1, h2, h3, h4, h5, h6, th, var {font-style: normal; font-weight: normal;}
+caption, th {text-align: left;}
+q:before, q:after {content: '';}
+a{outline:0;}
+body {width: 100%; text-align: center; }
+
+
+body {
+    background-repeat: no-repeat;
+    background: #fff;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+#contiene_contador{
+    display: block;
+    float: right;
+    width: 30px; 
+    height: 30px; 
+    border: solid 2px #000; 
+    background: #fff;
+    margin: 5px;
+    border-radius: 50%; 
+}
+
+#contiene_contador span{
+    display: block;
+    margin-top:5px;
+    text-align: center;
+    font-size:14px; 
+    font-family: "Lucida Grande", Verdana,Arial,sans-serif; 
+    color:#000;
+    font-weight: bold;
+}
+
+video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+    background: #000;
+    transform: translateX(calc((100% - 100vw) / 2));
+}
+
+#verReloj{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#reloj {
+    font-size: 44px;
+    font-family: "Lucida Grande", Verdana,Arial,sans-serif; 
+    font-style: normal; 
+    font-weight: normal;
+    min-height: 120px;
+}
+
+#btn_switch{
+    float:right;
+    position: fixed;
+    display: block;
+    text-align: center;
+    bottom:5px;
+    right: 5px;
+    cursor:pointer;
+    color:#000;
+    background-color: #fff;
+    border: solid 2px #000; 
+    border-radius: 5px; 
+}
+
+.arrows-maximize
+{
+    display: inline-block; width:42px; height: 42px; background: url(/public/img/arrows-maximize.svg) no-repeat center center; background-size: 42px 42px; margin:0px 2px;
+}
+
+.arrows-minimize
+{
+    display: inline-block; width:42px; height: 42px; background: url(/public/img/arrows-minimize.svg) no-repeat center center; background-size: 42px 42px; margin:0px 2px;
+}

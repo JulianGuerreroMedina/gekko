@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>{copy}
+<meta charset="utf-8"/>
+<title>{titulo}</title>
+<meta name="robots" content="noindex,nofollow"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="icon" href="{UrlBase}/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="{UrlBase}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="{UrlBase}/public/css/login.css{VerCache}"/>
+<script type="text/javascript" src="{UrlBase}/public/loginIO/loginIO.js{VerCache}"></script>
+<link rel="stylesheet" type="text/css" href="{UrlBase}/public/loginIO/loginIO.css{VerCache}"/>
+</head>
+<body>
+<div id="Titulo_login">
+    <h1>Gekko</h1>
+</div>
+    <div class="msg_actualizacion">
+        <!-- <div class="msg_act"></div> -->
+    </div>
+<div id="ContieneLogin">
+    <div class="frm_login">
+        <div id="resultado"></div>
+        <form id="frm_login" action="" method="post">
+            <p>
+                <label for="usuario"><strong>Ingresa tu Usuario</strong></label>
+                <input id="usuario" class="entrada" name="usuario" value="" type ="text" autocomplete="off" autofocus>
+            </p>
+            <p>
+                <label for="contrasena"><strong>Contrase&ntilde;a:</strong></label>
+                <input id="contrasena" class="entrada" name="contrasena" value="" autocomplete="off" type="password">
+            </p>
+            <div class="botonera">
+                <input type="submit" id="btnsubmit" class="boton" value="Acceder">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
