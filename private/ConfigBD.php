@@ -17,9 +17,3 @@ $GLOBALS['copy'] = "\n<!-- Gekko - Desarrollado por Julian Guerrero Medina &copy
 
 $GLOBALS['desarrollo'] = 1;
 
-if ($GLOBALS['desarrollo'] == 1)
-{
-    ini_set('display_errors',1);
-    error_reporting(E_ALL);
-    $GLOBALS['DepuraSQL'] = 10;
-}
