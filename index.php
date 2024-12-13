@@ -1,7 +1,7 @@
 <?php
 
 require 'private/ConfigBD.php';
-require 'private/Core/error_log.php';
+require 'private/Core/LogPagina404.php';
 require 'private/Core/ConectorBD.php';
 require 'private/Core/Layout.php';
 require 'private/Core/Control.php';

@@ -134,92 +134,10 @@ nav
 .calendar-cancel{display: inline-block; width:22px; height: 22px; background: url(/public/img/calendar-cancel.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
 .file-upload{display: inline-block; width:24px; height: 30px; background: url(/public/img/file-upload.svg) no-repeat center center; background-size: 24px 30px; margin:0px}
 
-.bordered 
-{
-    width:100%; 
-    margin: auto; 
-    border: solid #ccc 1px; 
-    -webkit-box-shadow: 0 1px 1px #ccc; 
-    -moz-box-shadow: 0 1px 1px #ccc; 
-    box-shadow: 0 1px 1px #ccc; 
-    font-size:12px; 
-    color:#000; 
-}
-
-.bordered table 
-{
-    border-collapse: collapse; 
-    border-spacing: 0; 
-    width:100%; 
-    margin-right: auto; 
-    margin-left: auto; 
-    text-align:center; 
-    clear: both;
-}
-
-.bordered thead
-{
-    background: #eee;
-}
-
-.bordered thead tr:hover 
-{
-    background: #eee;
-}
-
-.bordered th 
-{
-    border-left: 1px solid #eee; 
-    border-top: 1px solid #eee; 
-    padding: 5px; 
-    text-align: center; 
-    height: 40px;
-    font-weight: bold; 
-    background-color:#eee; 
-    background-image:-webkit-gradient(linear, left top, left bottom, from(#eee), to(#ccc)); 
-    background-image:-webkit-linear-gradient(top, #eee, #ccc); 
-    background-image:-moz-linear-gradient(top, #eee, #ccc); 
-    background-image:-ms-linear-gradient(top, #eee, #ccc); 
-    background-image:-o-linear-gradient(top, #eee, #ccc); 
-    background-image:linear-gradient(top, #eee, #ccc); 
-    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
-    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset; 
-    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
-    border-top: none; 
-    text-shadow: 0 1px 0 rgba(255,255,255,.5); 
-}
-
-.bordered tr:hover 
-{
-    background: #fbf8e9; 
-    -o-transition: all 0.1s ease-in-out; 
-    -webkit-transition: all 0.1s ease-in-out; 
-    -moz-transition: all 0.1s ease-in-out; 
-    -ms-transition: all 0.1s ease-in-out; 
-    transition: all 0.1s ease-in-out;
-}    
-
-.bordered td
-{
-    border-left: 1px solid #ccc; 
-    border-right: 1px solid #ccc; 
-    border-top: 1px solid #ccc; 
-    padding: 0 5px; 
-    text-align: center;
-    height: 40px;
-}
-
-.bordered td:first-child, .bordered th:first-child 
-{
-    border-left: none; 
-}
-
 .abm_thumb {
     text-align: center;
-
 }
 
 .abm_thumb video, .abm_thumb img{
     max-height: 250px;
-
 }

@@ -309,47 +309,6 @@ function SanitizaNumero($numero)
 }
 
 /**
- * Carga Un formulario con una serie de años
- * 
- * Podemos predefinir los Años previos y Posteriores al Año Actual
- * y podemos Seleccionar por Parametro cula año es el marcado
- * 
- * @param String $nombre Nombre del ComboBox
- * @param String $alias Nombre del Label del comboBox
- * @param Integer $anio_seleccionado El año seleccionado
- * @param Integer $anios_antes Numero de Años que se cargan antes del Año Actual
- * @param Integer $anios_despues Numero de Años que se cargan despues del Año Actual
- * @return String
- */
-function SelectHorasMinutosAMPM($NombreLabel,$NombreH,$NombreM,$NombreAMPM, $hora,$minuto, $ampm)
-{
-    $error_v=""; $horapost=""; $minutospost="";
-    if(isset($_POST["$NombreH"])){$horapost=$_POST["$NombreH"];}
-    if(isset($_POST["$NombreM"])){$minutospost=$_POST["$NombreM"];}
-    if (($horapost=="00") AND ($minutospost=="00")){$error_v = MsgError("Seleccionar Hora");}
-    $ampmselect="";
-    
-    for ($i=0;$i<=12;$i++ ):$i=sprintf("%02s",$i);
-        $horas=$horas."<option value=\"$i\"".MarcaSelected($i, $hora).">$i</option>";
-    endfor; 
-    
-    $horas="<select id=\"$NombreH\" name=\"$NombreH\">$horas</select>";
-    
-    for ($i=0;$i<=59;$i++ ):$i=sprintf("%02s",$i); 
-        $minutos=$minutos."<option value=\"$i\"".MarcaSelected($i, $minuto).">$i</option>";
-    endfor;
-    
-    $minutos="<select id=\"$NombreM\" name=\"$NombreM\">$minutos</select>";
-    $ampmselect="<select id=\"$NombreAMPM\" name=\"$NombreAMPM\">
-    <option value=\"am\"".MarcaSelected('am', $ampm).">AM</option>
-    <option value=\"pm\"".MarcaSelected('pm', $ampm).">PM</option>
-    </select>";
-    
-    $cadena="<p><label>$NombreLabel</label>$horas $minutos $ampmselect $error_v</p>";
-    return $cadena;
-}
-
-/**
  * Retorna la URL desde donde se ejecuta el script.<br>
  * Agrega el protocolo "http", "https"...  tomado de la global $GLOBALS['OrigenURL'] <br>
  * y obtiene la uri actual del script con $_SERVER['REQUEST_URI']; 
