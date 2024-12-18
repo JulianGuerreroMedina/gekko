@@ -96,8 +96,7 @@ function ListaMultimedia()
         }
     
    $cadena = "<h1 class=\"titulo2\">Recursos Multimedia</h1>
-    <div id =\"resultados\" class=\"bordered\">
-        <table>
+    <table id=\"publicaciones\" class=\"table bordered\">
         <thead>
             <tr>
                 <th>#</th>
@@ -112,8 +111,7 @@ function ListaMultimedia()
             </tr>
         </thead>
         <tbody>$tr</tbody>
-        </table>
-    </div>";
+    </table>";
     return $cadena;
 }
 
