@@ -1,5 +1,5 @@
 <?php
-include 'private/Core/UploadFile.php';
+include 'private/core/UploadFile.php';
 
 function ProcesaFormAgregarSustento()
 {
