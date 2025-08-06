@@ -19,4 +19,4 @@ $GLOBALS['MinimizaLayout'] = 11;/* (1) Minimiza el codigo html para el cliente; 
 $GLOBALS['URL_Login'] = $GLOBALS['OrigenURL']."/admin/";
 $GLOBALS['URL_Post_Login'] = $GLOBALS['OrigenURL']."/";
 $GLOBALS['copy'] = "\n<!-- Gekko - Desarrollado por Julian Guerrero Medina &copy; 2011 - ".date('Y')." -->";
-$GLOBALS['desarrollo'] = 1;
+$GLOBALS['debug'] = 1;
