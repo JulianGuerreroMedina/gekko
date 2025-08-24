@@ -1,7 +1,7 @@
 <?php
 
 define ('bd_dbname', 'data/gekko.sqlite');
-
+define('debug',  1); // 1 para depurar, 0 para producción
 
 if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on') {
     $GLOBALS['protocolo'] ="http://";
@@ -19,4 +19,3 @@ $GLOBALS['MinimizaLayout'] = 11;/* (1) Minimiza el codigo html para el cliente; 
 $GLOBALS['URL_Login'] = $GLOBALS['OrigenURL']."/admin/";
 $GLOBALS['URL_Post_Login'] = $GLOBALS['OrigenURL']."/";
 $GLOBALS['copy'] = "\n<!-- Gekko - Desarrollado por Julian Guerrero Medina &copy; 2011 - ".date('Y')." -->";
-$GLOBALS['debug'] = 1;

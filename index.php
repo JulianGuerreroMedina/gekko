@@ -1,6 +1,7 @@
 <?php
 
 require 'private/ConfigBD.php';
+require 'private/debug.php';
 require 'private/core/ConectorBD.php';
 require 'private/core/Control.php';
 require 'private/core/General.php';
