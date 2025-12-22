@@ -2,9 +2,9 @@
 
 function ValidaBD()
 {
-    if (!(file_exists(bd_dbname)))
+    if (!(file_exists($_ENV['BD_DBNAME'])))
     {
-        $bd = new SQLite3(bd_dbname); 
+        $bd = new SQLite3($_ENV['BD_DBNAME']); 
         $consulta_sql = "CREATE TABLE multimedia (id INTEGER, tipo INTEGER DEFAULT 1, descripcion TEXT DEFAULT '', url TEXT, duracion INTEGER DEFAULT 30, f_inicio DATE, f_final DATE, activo INTEGER DEFAULT 1, PRIMARY KEY(id AUTOINCREMENT))";
         $bd -> query($consulta_sql); 
     

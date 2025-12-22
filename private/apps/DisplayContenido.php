@@ -2,14 +2,13 @@
 
 function Instantaneas()
 {
-
     $hoy = date('Y-m-d');
     $ahora = date('H:m');
 
     $resultados[] = ["ImgLogo",10,0];
-    if (file_exists(bd_dbname))
+    if (file_exists($_ENV['BD_DBNAME']))
     {
-        $bd = new SQLite3(bd_dbname);
+        $bd = new SQLite3($_ENV['BD_DBNAME']);
         $bdconsulta = "SELECT multimedia.tipo,
         multimedia.url,
         multimedia.duracion

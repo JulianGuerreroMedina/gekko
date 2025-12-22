@@ -12,7 +12,7 @@ function ProcesaFrm_borrar_multimedia()
 
     if ($id_multimedia >= 1)
     {
-        $bd = new SQLite3(bd_dbname);
+        $bd = new SQLite3($_ENV['BD_DBNAME']);
         $bdconsulta = "SELECT multimedia.url
         FROM multimedia 
         WHERE multimedia.id = '$id_multimedia'
@@ -45,7 +45,7 @@ function Frm_borrar_multimedia()
 
     if ($id_multimedia >= 1)
     {
-        $bd = new SQLite3(bd_dbname);
+        $bd = new SQLite3($_ENV['BD_DBNAME']);
         $bdconsulta = "SELECT multimedia.id,
         multimedia.activo
         FROM multimedia 
@@ -119,7 +119,7 @@ function frmSetear()
 
     if ($id_multimedia >= 1)
     {
-        $bd = new SQLite3(bd_dbname);
+        $bd = new SQLite3($_ENV['BD_DBNAME']);
         $bdconsulta = "SELECT multimedia.id,
         multimedia.activo
         FROM multimedia 
@@ -237,7 +237,7 @@ function ProcesaFrm_abm_multimedia()
  
     if ($bandera == 1)
     {
-        $bd = new SQLite3(bd_dbname);
+        $bd = new SQLite3($_ENV['BD_DBNAME']);
         if ($id_multimedia >= 1)
         {
             $bdconsulta = "UPDATE multimedia SET
@@ -298,7 +298,7 @@ function Frm_abm_multimedia()
 
     if ($id_multimedia >= 1)
     {
-        $bd = new SQLite3(bd_dbname);
+        $bd = new SQLite3($_ENV['BD_DBNAME']);
         $bdconsulta = "SELECT multimedia.id,
         multimedia.tipo,
         multimedia.descripcion,

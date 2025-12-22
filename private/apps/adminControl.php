@@ -9,7 +9,7 @@ function ListaMultimedia()
     $horario = '';
     $url = '';
 
-        $bd = new SQLite3(bd_dbname);
+        $bd = new SQLite3($_ENV['BD_DBNAME']);
         $bdconsulta = "SELECT multimedia.id,
         multimedia.tipo,
         multimedia.descripcion,

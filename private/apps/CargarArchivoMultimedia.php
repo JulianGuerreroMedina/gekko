@@ -53,7 +53,7 @@ function ProcesaFormAgregarSustento()
         if ($resultado == 'ok')
         {
             $url = $array[1];
-            $bd = new SQLite3(bd_dbname);
+            $bd = new SQLite3($_ENV['BD_DBNAME']);
             $bdconsulta = "UPDATE multimedia SET
             url = '$url',
             descripcion = '$descripcion'

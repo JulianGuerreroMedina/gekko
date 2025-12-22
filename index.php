@@ -1,9 +1,4 @@
 <?php
-
+//include 'private/core/log-rate-limit.php';
 require 'private/ConfigBD.php';
-require 'private/debug.php';
-require 'private/core/ConectorBD.php';
-require 'private/core/Control.php';
-require 'private/core/General.php';
-require 'private/core/Layout.php';
-require 'private/core/000-controller.php';
+require 'private/core/autoload.php';
