@@ -1,87 +1,75 @@
 <?php
 
+include 'AdminModelo.php';
 
 function ListaMultimedia()
 {
-    $cadena = 'error';
-    $tr = '';
+    $array_respuesta = ['respuesta' => 'error', 'msg_error' => 'Ocurrió un error inesperado'];
+    $cadena = '';
     $i = 1;
     $horario = '';
     $url = '';
 
-        $bd = new SQLite3($_ENV['BD_DBNAME']);
-        $bdconsulta = "SELECT multimedia.id,
-        multimedia.tipo,
-        multimedia.descripcion,
-        multimedia.url,
-        multimedia.duracion,
-        multimedia.f_inicio,
-        multimedia.f_final,
-        multimedia.h_inicio,
-        multimedia.h_final,
-        multimedia.activo
-        FROM multimedia 
-        ORDER BY multimedia.activo DESC, multimedia.id DESC;";
-        $consulta = $bd->query("$bdconsulta");
-        while ($row = $consulta->fetchArray()) {
-            $id_multimedia = $row["id"];
-            $tipo = $row["tipo"];
+        
+    $consulta = bdListaMultimedia();
+    $cr = count($consulta);
+    if ($cr <= 0)
+    {
+        $array_respuesta = ['respuesta' => 'sin_datos', 'msg_error' => 'No hay recursos multimedia cargados'];
+        return $array_respuesta;
+    }
+    if ($cr >= 1)
+    {
+        foreach ($consulta as $consulta):
+            $id_multimedia = $consulta['id'];
+            $tipo = $consulta['tipo'];
+            $descripcion = $consulta["descripcion"];
+            $url = $consulta["url"];
+            $f_inicio = ddmmaaaa($consulta["f_inicio"]);
+            $f_final = ddmmaaaa($consulta["f_final"]);
+            $h_inicio = $consulta["h_inicio"];
+            $h_final = $consulta["h_final"];
+            $horario = "$h_inicio hrs - $h_final hrs";
+            $duracion = $consulta["duracion"] . 's';
+            $activo = $consulta["activo"];
+
             if ($tipo == 1) {
                 $nombretipo = "Imagen";
-            } else
+            } else              
             if ($tipo == 2) {
                 $nombretipo = "Video";
+                $duracion = '';
             }
-            $descripcion = $row["descripcion"];
+
             if ($descripcion == '') {
                 $descripcion = "Sin Descripci&oacute;n";
             }
             
-            $url = $row["url"];
-            if ($url <> '')
-            {
+            if ($url <> '') {
                 $cadena_url = $url;
-            }
-            else
-            if ($url == '')
-            {
+            } else
+            if ($url == '') {
                 $cadena_url = "<span id_multimedia=\"$id_multimedia\" class=\"subir_multimedia file-upload puntero\"></span>";
             }
-
-            $duracion = $row["duracion"] . 's';
-
-            if ($tipo == 2)
-            {
-                $duracion = '';
-            }
-            $f_inicio = ddmmaaaa($row["f_inicio"]);
-            $f_final = ddmmaaaa($row["f_final"]);
-
-
-            $h_inicio = $row["h_inicio"];
-            $h_final = $row["h_final"];
-            $horario = "$h_inicio hrs - $h_final hrs";
 
             if ($h_inicio == '' && $h_final == '') {
                 $horario = "---";
             }
 
-            if ($h_inicio == '00:00' || $h_final == '00:00') {
+            if ($h_inicio == '00:00:00' || $h_final == '00:00:00') {
                 $horario = "---";
             }
 
-            $activo = $row["activo"];
             if ($activo == 1) {
                 $cadena_set = "btn-toggle-on";
             } else {
                 $cadena_set = "btn-toggle-off";
             }
 
-            $tr .= "<tr id=\"tr_$id_multimedia\">
+            $cadena .= "<tr id=\"tr_$id_multimedia\">
                 <td>$i</td>
                 <td>$nombretipo</td>
-                <td>$descripcion</td>
-                <td>$cadena_url</td> 
+                <td id=\"id_descripcion_$id_multimedia\">$descripcion</td>
                 <td>$duracion</td>
                 <td>$f_inicio</td>
                 <td>$f_final</td>
@@ -93,16 +81,21 @@ function ListaMultimedia()
                 </td>
             </tr>";
             $i = $i + 1;
+            endforeach;
+            $array_respuesta = ['respuesta' => 'ok', 'html' => $cadena];
         }
-    
-   $cadena = "<h1 class=\"titulo2\">Recursos Multimedia</h1>
+    return $array_respuesta;
+}
+
+function AdminControl()
+{
+    $cadena = "<h1 class=\"titulo2\">Recursos Multimedia</h1>
     <table id=\"publicaciones\" class=\"table bordered\">
         <thead>
             <tr>
                 <th>#</th>
                 <th>Tipo</th>
                 <th>Descripcion</th>
-                <th>URL</th>
                 <th>Duraci&oacute;n</th>
                 <th>Fecha Inicio</th>
                 <th>Fecha Final</th>
@@ -110,13 +103,7 @@ function ListaMultimedia()
                 <th><span id=\"btn_add_multimedia\" class=\"btn-plus puntero\"></span></th>
             </tr>
         </thead>
-        <tbody>$tr</tbody>
+        <tbody id=\"multimedia\"></tbody>
     </table>";
     return $cadena;
-}
-
-function AdminControl()
-{
-    include 'private/apps/valida_bd_sqlite.php';
-    ValidaBD();
 }

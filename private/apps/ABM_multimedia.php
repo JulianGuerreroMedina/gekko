@@ -1,8 +1,9 @@
 <?php
+include 'AdminModelo.php';
 
-function ProcesaFrm_borrar_multimedia()
+function ProcesaFrmBorrarMultimedia()
 {
-    $cadena = 'error';
+    $array_respuesta = ['respuesta' => 'error', 'msg_error' => 'Ocurrió un error inesperado'];
     $id_multimedia = 0;
 
     if (isset($_POST["id_multimedia"]))
@@ -12,56 +13,28 @@ function ProcesaFrm_borrar_multimedia()
 
     if ($id_multimedia >= 1)
     {
-        $bd = new SQLite3($_ENV['BD_DBNAME']);
-        $bdconsulta = "SELECT multimedia.url
-        FROM multimedia 
-        WHERE multimedia.id = '$id_multimedia'
-        LIMIT 0,1";
-        $consulta = $bd -> query("$bdconsulta");
-        while ($row = $consulta->fetchArray()) {
-            $url = $row["url"];
-            $consulta_borrar = "DELETE FROM multimedia WHERE multimedia.id = '$id_multimedia'"; 
-            $bd -> query($consulta_borrar); 
+        $consulta = bdMultimediaPorId($id_multimedia);
+        $cr = count($consulta);
+        if ($cr == 0)
+        {
+            return 'error';
+        } else
+        if ($cr == 1)
+        {
+            foreach ($consulta as $row):
+                $url     = $row["url"];
+            endforeach;
+        
+            //bdBorrarMultimedia($id_multimedia);
     
             if ($url <> '')
             {
                 unlink("media/$url");
             }
-            $cadena = 'ok';
+            $array_respuesta = ['respuesta' => 'ok', 'msg_ok' => 'Recurso multimedia borrado con exito'];
         }
     }
-    return $cadena;
-}
-
-function Frm_borrar_multimedia()
-{
-    $cadena = 'error';
-    $id_multimedia = 0;
-
-    if (isset($_POST["id_multimedia"]))
-    {
-        $id_multimedia = SanitizaID($_POST["id_multimedia"]);
-    }
-
-    if ($id_multimedia >= 1)
-    {
-        $bd = new SQLite3($_ENV['BD_DBNAME']);
-        $bdconsulta = "SELECT multimedia.id,
-        multimedia.activo
-        FROM multimedia 
-        WHERE multimedia.id = '$id_multimedia'
-        LIMIT 0,1";
-        $consulta = $bd->query("$bdconsulta");
-        while ($row = $consulta->fetchArray()) {
-        
-            $cadena = "<h3>Desea elimiar el recurso Multimedia</h3>
-                <div class=\"botonera\">
-                <input type=\"reset\" id=\"btnCancelar\" name=\"btnCancelar\" class=\"boton\" value=\"Cancelar\" onclick=\"msCerrar()\"/>
-                <input type=\"submit\" id=\"btnEnviar\" name=\"btnEnviar\" class=\"boton\" value=\"Borrar\" onclick=\"ProcesaFrm_borrar_multimedia($id_multimedia); return false;\"/>
-            </div>";
-        }
-    }
-    return $cadena;
+    return $array_respuesta;
 }
 
 function validar_horario()
@@ -119,29 +92,27 @@ function frmSetear()
 
     if ($id_multimedia >= 1)
     {
-        $bd = new SQLite3($_ENV['BD_DBNAME']);
-        $bdconsulta = "SELECT multimedia.id,
-        multimedia.activo
-        FROM multimedia 
-        WHERE multimedia.id = '$id_multimedia'
-        LIMIT 0,1";
-        $consulta = $bd->query("$bdconsulta");
-        while ($row = $consulta->fetchArray()) {
-            $activo = $row["activo"];
-        }
+        $consulta = bdMultimediaPorId($id_multimedia);
+        $cr = count($consulta);
+        if ($cr == 0)
+        {
+            return 'error';
+        } else
+        if ($cr == 1)
+        {
+            foreach ($consulta as $row):
+                $activo = $row["activo"];
+            endforeach;
 
-        if ($activo == 1)
-        {
-            $bdconsulta = "UPDATE multimedia SET activo = '0' WHERE id = '$id_multimedia'";
-            $cadena = '0';
+            if ($activo == 1)
+            {
+                bdSetMultimedia($id_multimedia, 0);
+                $cadena = '0';
+            } else {
+                bdSetMultimedia($id_multimedia, 1);
+                $cadena = '1';
+            }
         }
-        else
-        {
-            $bdconsulta = "UPDATE multimedia SET activo = '1' WHERE id = '$id_multimedia'";
-            $cadena = '1';
-        }
-        $bd->exec($bdconsulta);
-       
     }
     return $cadena;
 }
@@ -170,7 +141,7 @@ function verMiniatura($tipo, $url)
     }
     return $cadena;
 }
-function ProcesaFrm_abm_multimedia()
+function ProcesaFrmAbmMultimedia()
 {
     $bandera = 1; 
     $array_bandera = ['error'];   
@@ -240,32 +211,20 @@ function ProcesaFrm_abm_multimedia()
         $bd = new SQLite3($_ENV['BD_DBNAME']);
         if ($id_multimedia >= 1)
         {
-            $bdconsulta = "UPDATE multimedia SET
-            tipo = '$tipo',
-            descripcion = '$descripcion',
-            duracion = '$duracion',
-            f_inicio = '$f_inicio',
-            f_final = '$f_final',
-            h_inicio = '$h_inicio',
-            h_final = '$h_final'
-            WHERE id = '$id_multimedia'";
+            bdModificarMultimedia($id_multimedia, $tipo, $descripcion, $duracion, $f_inicio, $f_final, $h_inicio, $h_final);
             $array_bandera[0] = 'modificado';
         }
         else
         if ($id_multimedia == 0)
         {
-            $bdconsulta = "INSERT INTO multimedia (tipo, descripcion, duracion, f_inicio, f_final, h_inicio, h_final) 
-            VALUES
-            ('$tipo', '$descripcion', '$duracion', '$f_inicio', '$f_final', '$h_inicio', '$h_final')";
+            $id_multimedia = bdAgregarMultimedia($tipo, $descripcion, $duracion, $f_inicio, $f_final, $h_inicio, $h_final);
             $array_bandera[0] = 'agregado';
         }
-        $bd->exec($bdconsulta);
-        $bd->close();
     }
     return $array_bandera;
 }
 
-function Frm_abm_multimedia()
+function FrmAbmMultimedia()
 {
     $cadena = 'error';
     $nombre_boton = 'Agregar';
@@ -298,22 +257,16 @@ function Frm_abm_multimedia()
 
     if ($id_multimedia >= 1)
     {
-        $bd = new SQLite3($_ENV['BD_DBNAME']);
-        $bdconsulta = "SELECT multimedia.id,
-        multimedia.tipo,
-        multimedia.descripcion,
-        multimedia.url,
-        multimedia.duracion,
-        multimedia.f_inicio,        
-        multimedia.f_final,
-        multimedia.h_inicio,        
-        multimedia.h_final,
-        multimedia.activo
-        FROM multimedia 
-        WHERE multimedia.id = '$id_multimedia'
-        LIMIT 0,1";
-        $consulta = $bd->query("$bdconsulta");
-        while ($row = $consulta->fetchArray()) {
+        
+        $consulta = bdMultimediaPorId($id_multimedia);
+        $cr = count($consulta);
+        if ($cr == 0)       
+        {
+            return 'error';
+        } else 
+        if ($cr == 1)       
+
+        foreach ($consulta as $row):
             $tipo = $row["tipo"];
             $descripcion = $row["descripcion"];
             $url = $row["url"];
@@ -324,7 +277,7 @@ function Frm_abm_multimedia()
             if ($h_inicio == '00:00'){$h_inicio = '';}
             $h_final = $row["h_final"];
             if ($h_final == '00:00'){$h_final = '';}
-        }
+        
         $nombre_boton = 'Modificar';
         $option_nulo = '';
 
@@ -338,8 +291,10 @@ function Frm_abm_multimedia()
             $option_multimedia = '<option value="2">Video</option>';
             $cadena_duracion = '';
         }   
+        endforeach;
     }
-    $cadena = "<form id=\"frm_abm_multimedia\">
+
+    $cadena = "<form id=\"FrmAbmMultimedia\">
         <input type=\"hidden\" name=\"id_multimedia\" value=\"$id_multimedia\"/>
         <ul>
             ".verMiniatura($tipo, $url)."
@@ -374,7 +329,7 @@ function Frm_abm_multimedia()
         </ul>
         <div class=\"botonera\">
             <input type=\"reset\" id=\"btnCancelar\" name=\"btnCancelar\" class=\"boton\" value=\"Cancelar\" onclick=\"msCerrar()\"/>
-            <input type=\"submit\" id=\"btnEnviar\" name=\"btnEnviar\" class=\"boton\" value=\"$nombre_boton\" onclick=\"ProcesaFrm_abm_multimedia(); return false;\"/>
+            <input type=\"submit\" id=\"btnEnviar\" name=\"btnEnviar\" class=\"boton\" value=\"$nombre_boton\" onclick=\"ProcesaFrmAbmMultimedia(); return false;\"/>
         </div>
     </form>";
     return $cadena;

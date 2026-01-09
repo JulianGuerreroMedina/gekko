@@ -1,53 +1,36 @@
-document.addEventListener("DOMContentLoaded", function () {
-    iniciarAdmin();
-    ListaMultimedia();
-});
+document.addEventListener("DOMContentLoaded", function () { iniciarAdmin(); });
 
 
-
-
-function ProcesaFrm_borrar_multimedia(id_multimedia)
-{
-    let datos = new FormData();
-    datos.append("funcion","ProcesaFrm_borrar_multimedia");
-    datos.append("id_multimedia", id_multimedia);
-    fetch('/api/Admin', {method: 'POST', body : datos})
-    .then(res => res.text())
-    .then(data => 
-    {
-        if(data != 'ok')
-        {
-            msModal('alert','Ocurrio un error Inesperado');
-        }
-        else
-        if(data == 'ok')
-        {
-            msModal('ok', 'Recurso Borrado');
-            ListaMultimedia();
-        }      
-    });   
+function ProcesaFrmBorrarMultimedia(id_multimedia) {
+  let datos = new FormData();
+  datos.append("funcion", "ProcesaFrmBorrarMultimedia");
+  datos.append("id_multimedia", id_multimedia);
+  fetch("/api/admin", { method: "POST", body: datos })
+    .then((response) => response.json())
+    .then((contenido) => {
+      if (contenido["respuesta"] == "ok") {
+        msModal("ok", "Recurso Borrado");
+        BorrarIdFadeOut('tr_' + id_multimedia);
+      } else {
+        msModal("alert", "Ocurrio un error Inesperado");
+      }
+    })
+.catch(error => console.error(error));
 }
 
-function Frm_borrar_multimedia(id_multimedia)
+
+function FrmBorrarMultimedia(id_multimedia)
 {
-    let datos = new FormData();
-    datos.append("funcion","Frm_borrar_multimedia");
-    datos.append("id_multimedia", id_multimedia);
-    fetch('/api/Admin', {method: 'POST', body : datos})
-    .then(res => res.text())
-    .then(data => 
-    {
-        if(data == 'error')
-        {
-            msModal('alert','Ocurrio un error Inesperado');
-        }
-        else
-        if(data != 'error')
-        {
-            msModal('sino', 'Borrar');
-            document.querySelector('#msModalHTML').innerHTML = data;
-        }      
-    });    
+  msModal("sino", "Borrar Multimedia");
+  let descripcion = document.getElementById("id_descripcion_" + id_multimedia).innerText;
+  let render = `<form accept-charset="UTF-8">
+        <h3>Desea elimiar el recurso Multimedia: ${descripcion}?</h3>
+        <div class="botonera">
+            <input type="reset" id="btnCancelar" name="btnCancelar" class="boton" value="Cancelar" onclick="msCerrar()"/>
+            <input name="btnBuscar" id="ProcesaFrmBorrarMultimedia" id_multimedia="${id_multimedia}"  type="submit" class="boton" value="Borrar">
+        </div>
+    </form>`;
+  document.querySelector("#msModalHTML").innerHTML = render;
 }
 
 function frmSetear(id_multimedia)
@@ -55,7 +38,7 @@ function frmSetear(id_multimedia)
     let datos = new FormData();
     datos.append("funcion","frmSetear");
     datos.append("id_multimedia", id_multimedia);
-    fetch('/api/Admin', {method: 'POST', body : datos})
+    fetch('/api/admin', {method: 'POST', body : datos})
     .then(res => res.text())
     .then(data => 
     {
@@ -78,15 +61,15 @@ function frmSetear(id_multimedia)
     });     
 }
 
-function ProcesaFrm_abm_multimedia()
+function ProcesaFrmAbmMultimedia()
 {
     DisabledById('btnCancelar');
     DisabledById('btnEnviar');
     BorraMsgFrm();
-    let form =  document.querySelector('#frm_abm_multimedia');
+    let form =  document.querySelector('#FrmAbmMultimedia');
     let datos = new FormData(form);
-    datos.append("funcion","ProcesaFrm_abm_multimedia");
-    fetch('/api/Admin', {method: 'POST', body : datos})
+    datos.append("funcion","ProcesaFrmAbmMultimedia");
+    fetch('/api/admin', {method: 'POST', body : datos})
     .then( response => response.text() )
     .then( data => manejardatos(data) );
     const manejaError = (error) => 
@@ -102,7 +85,7 @@ function ProcesaFrm_abm_multimedia()
         //console.log(contenido[1]);
         if (contenido[0] == 'error')
         {
-            MsgFormError('frm_abm_multimedia','Existen campos no validos');
+            MsgFormError('FrmAbmMultimedia','Existen campos no validos');
             for (i = 1; i < contenido.length; i++) 
             {
                 MsgError(contenido[i],'');
@@ -124,7 +107,7 @@ function ProcesaFrm_abm_multimedia()
     EnabledById('btnEnviar');
 }
 
-function Frm_abm_multimedia(id_multimedia)
+function FrmAbmMultimedia(id_multimedia)
 {
     let titulo = 'Agregar';
     if (id_multimedia >= 1){
@@ -132,9 +115,9 @@ function Frm_abm_multimedia(id_multimedia)
     }
     
     let datos = new FormData();
-    datos.append("funcion","Frm_abm_multimedia");
+    datos.append("funcion","FrmAbmMultimedia");
     datos.append("id_multimedia", id_multimedia);
-    fetch('/api/Admin', {method: 'POST', body : datos})
+    fetch('/api/admin', {method: 'POST', body : datos})
     .then(res => res.text())
     .then(data => 
     {
@@ -156,17 +139,31 @@ function ListaMultimedia()
     let datos = new FormData();
     datos.append("funcion", "ListaMultimedia");
     datos.append("otro_dto", "25663314");
-    fetch("/api/Admin", { method: "POST", body: datos })
-      .then((res) => res.text())
-      .then((data) => {
-        if (data === "error") {
-          console.log(('Ocurrio un error cargando la grafica'))
-        } else if (data !== "error") {
-          document.querySelector("#contenido").innerHTML = '';
-          document.querySelector("#contenido").insertAdjacentHTML("beforeend", data);
+    fetch("/api/admin", { method: "POST", body: datos })
+    .then( response => response.json() )
+    .then( contenido => 
+    {
+        if (contenido['respuesta'] == 'ok')
+        {
+            document.querySelector("#multimedia").tbody  = '';
+          document.querySelector("#multimedia").innerHTML  = contenido['html'];
+          //document.querySelector("#contenido").insertAdjacentHTML("beforeend", data);
+        } else
+        if (contenido['respuesta'] == 'sin_datos')
+        {
+            document.querySelector("#multimedia").tbody  = '';
+            document.querySelector("#multimedia").innerHTML  = '<tr><td colspan="6">No hay recursos multimedia cargados</td></tr>';
+        } else
+        {
+            msModal('alert','Ocurrio un error Inesperado');
         }
-    });
-  }
+    })
+    .catch( error => 
+    {
+        msModal('alert','Ocurrio un error Inesperado');
+    }
+    );
+}
 
 function limpia_horario()
 {
@@ -176,33 +173,34 @@ function limpia_horario()
 
 function iniciarAdmin()
 {
-    const contenido = document.getElementById("contenido");
+    const contenido = document.body;
     contenido.addEventListener('click', (e) => {
 
         //Boton Agregar multimedia
         if (e.target.id === 'btn_add_multimedia'){
             //console.log(e.target.attributes.id.value);
-            Frm_abm_multimedia('0');
-        }
-        
+            FrmAbmMultimedia('0');
+        } else
+        //Boton procesar formulario borrar multimedia
+        if (e.target.id === 'ProcesaFrmBorrarMultimedia'){
+            e.preventDefault();            
+            ProcesaFrmBorrarMultimedia(e.target.attributes.id_multimedia.value);
+        } else
         //Botones para subir archivo multimedia
         if (e.target.classList.contains('subir_multimedia')){
             FormAgregarSustento(e.target.attributes.id_multimedia.value);
-        }
-
+        } else
         //Botones para setear mostrar o no
         if (e.target.classList.contains('btn_set')){
             frmSetear(e.target.attributes.id_multimedia.value);
-        }
-
-        //Botones para Borrar multimedia
+        } else
         if (e.target.classList.contains('btn_borrar')){
-            Frm_borrar_multimedia(e.target.attributes.id_multimedia.value);
-        }
-
-        //Botones para editar multimedia
+            FrmBorrarMultimedia(e.target.attributes.id_multimedia.value);
+        } else
         if (e.target.classList.contains('btn_editar')){
-            Frm_abm_multimedia(e.target.attributes.id_multimedia.value);
+            FrmAbmMultimedia(e.target.attributes.id_multimedia.value);
         }
     });
+
+    ListaMultimedia();
 }

@@ -6,7 +6,7 @@ function FormAgregarSustento(id_multimedia)
     let datos = new FormData();
     datos.append("funcion","FormAgregarSustento");
     datos.append("id_multimedia",id_multimedia);
-    fetch('/api/upload', {method: 'POST', body : datos})
+    fetch('/api/admin', {method: 'POST', body : datos})
     .then(res => res.text())
     .then(data => 
     {
@@ -151,7 +151,7 @@ function ProcesaFormAgregarSustento(id_multimedia)
         let datos = new FormData(formulario);
         datos.append("funcion","ProcesaFormAgregarSustento");
         datos.append("id_multimedia", id_multimedia);
-        peticion.open('post', '/api/upload');
+        peticion.open('post', '/api/admin');
         peticion.responseType = 'text';
         peticion.send(datos);
         peticion.onreadystatechange = function()
