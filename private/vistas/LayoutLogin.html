@@ -5,10 +5,12 @@
 <title>{titulo}</title>
 <meta name="robots" content="noindex,nofollow"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="csrf-token" content="{csrf_token}">
 <link rel="icon" href="{UrlBase}/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="{UrlBase}/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="{UrlBase}/public/css/login.css{VerCache}"/>
 <script type="text/javascript" src="{UrlBase}/public/core.js/loginIO.js{VerCache}"></script>
+<script src="{UrlBase}/public/core.js/csrf.js{VerCache}"></script>
 <link rel="stylesheet" type="text/css" href="{UrlBase}/public/core.js/loginIO.css{VerCache}"/>
 </head>
 <body>
@@ -22,6 +24,7 @@
     <div class="frm_login">
         <div id="resultado"></div>
         <form id="frm_login" action="" method="post">
+<input type="hidden" name="_csrf" value="{csrf_token}">
             <p>
                 <label for="usuario"><strong>Ingresa tu Usuario</strong></label>
                 <input id="usuario" class="entrada" name="usuario" value="" type ="text" autocomplete="off" autofocus>
