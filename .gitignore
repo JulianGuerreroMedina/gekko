@@ -1,3 +1,25 @@
 VerCache.conf
+.codex
 
+# Configuracion local
+private/.env
+docker/.env
+private/core
+public/core.js
+public/core.icons
 
+# Bases de datos locales
+*.sqlite
+/gekko
+
+# Runtime local
+storage/logs/*
+storage/sessions/*
+storage/tmp/*
+!storage/logs/.gitkeep
+!storage/sessions/.gitkeep
+!storage/tmp/.gitkeep
+
+# Certificados locales generados
+docker/ngnix/certs/*.crt
+docker/ngnix/certs/*.key
