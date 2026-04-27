@@ -29,7 +29,7 @@ function ProcesaFrmBorrarMultimedia()
     
             if ($url <> '')
             {
-                unlink("media/$url");
+                @unlink(MEDIA_PATH . "/$url");
             }
             $array_respuesta = ['respuesta' => 'ok', 'msg_ok' => 'Recurso multimedia borrado con exito'];
         }
@@ -125,7 +125,7 @@ function verMiniatura($tipo, $url)
         if ($tipo == 1)
         {
             $cadena = "<div class=\"abm_thumb\">
-                <img src=\"".$GLOBALS['OrigenURL']."/media/$url\" alt=\"Imagen\"/>
+                <img src=\"".$GLOBALS['OrigenURL'] . MEDIA_PUBLIC_URL . "/$url\" alt=\"Imagen\"/>
             </div>";
         }
         else
@@ -133,7 +133,7 @@ function verMiniatura($tipo, $url)
         {
             $cadena = "<div class=\"abm_thumb\">
                 <video controls >
-                    <source src=\"".$GLOBALS['OrigenURL']."/media/$url\" type=\"video/mp4\">
+                    <source src=\"".$GLOBALS['OrigenURL'] . MEDIA_PUBLIC_URL . "/$url\" type=\"video/mp4\">
                     Your browser does not support the video tag.
                 </video>
             </div>";

@@ -6,22 +6,22 @@
 <meta name="robots" content="noindex,nofollow"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="csrf-token" content="{csrf_token}">
-<link rel="icon" href="{UrlBase}/favicon.svg" type="image/x-icon" />
-<link rel="shortcut icon" href="{UrlBase}/favicon.svg" type="image/x-icon"/>
-<link rel="stylesheet" type="text/css" href="{UrlBase}/public/core.js/core.css{VerCache}"/>
-<link rel="stylesheet" type="text/css" href="{UrlBase}/public/css/admin.css{VerCache}"/>{link}
+<link rel="icon" href="{Asset:/favicon.svg}" type="image/x-icon" />
+<link rel="shortcut icon" href="{Asset:/favicon.svg}" type="image/x-icon"/>
+<link rel="stylesheet" type="text/css" href="{Asset:/core.js/core.css}"/>
+<link rel="stylesheet" type="text/css" href="{Asset:/css/admin.css}"/>{link}
 </head>
 <body>
 <header>
     <div id="logo">
         <a href="{UrlBase}/admin/">
-        <img src="/public/img/logo_gekko.svg" alt="Gekko Logo">
+        <img src="{Asset:/img/logo_gekko.svg}" alt="Gekko Logo">
         </a>
     </div>
     <nav>Gekko</nav>
 </header>    
 <div id="contenido">{contenido}</div>
-<script src="{UrlBase}/public/core.js/core.js{VerCache}"></script>
-<script src="{UrlBase}/public/core.js/csrf.js{VerCache}"></script>
+<script src="{Asset:/core.js/core.js}"></script>
+<script src="{Asset:/core.js/csrf.js}"></script>
 </body>
 </html>

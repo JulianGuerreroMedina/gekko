@@ -1,9 +1,24 @@
 <?php
 
+function logSqlitePath(): string
+{
+    $configuredLogDir = trim((string) ($_ENV['URL_LOGS'] ?? getenv('URL_LOGS') ?: ''));
+    $logDir = $configuredLogDir !== ''
+        ? $configuredLogDir
+        : (defined('LOGS_PATH') ? LOGS_PATH : getcwd() . '/storage/logs');
+
+    $logDir = rtrim($logDir, '/');
+    if (!is_dir($logDir)) {
+        @mkdir($logDir, 0775, true);
+    }
+
+    return $logDir . '/' . date('Y') . '_' . $_ENV['MIAPP'] . '_log.sqlite';
+}
+
 function LogAccesoSistema()
 {
     $id_usuario = $_SESSION['ID_USUARIO'];
-    $nombre_bd = $_ENV['URL_LOGS'] . date('Y') . '_' . $_ENV['MIAPP'] . '_log.sqlite';
+    $nombre_bd = logSqlitePath();
     if (!(file_exists("$nombre_bd"))) {
         bdLogSqlite($nombre_bd);
     }
@@ -18,7 +33,7 @@ function LogAccesoSistema()
 
 function LogRequest_URI()
 {
-    $nombre_bd = $_ENV['URL_LOGS'] . date('Y') . '_' . $_ENV['MIAPP'] . '_log.sqlite';
+    $nombre_bd = logSqlitePath();
     if (!(file_exists("$nombre_bd"))) {
         bdLogSqlite($nombre_bd);
     }
@@ -36,7 +51,7 @@ function LogRequest_URI()
 function LogDescargaExpediente($url_archivo)
 {
     $id_usuario = IdUsuario();
-    $nombre_bd = $_ENV['URL_LOGS'] . date('Y') . '_' . $_ENV['MIAPP'] . '_log.sqlite';
+    $nombre_bd = logSqlitePath();
     if (!(file_exists("$nombre_bd"))) {
         bdLogSqlite($nombre_bd);
     }

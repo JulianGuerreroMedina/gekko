@@ -1,5 +1,5 @@
 <?php
-include 'private/core/UploadFile.php';
+include CORE_PATH . '/UploadFile.php';
 
 function ProcesaFormAgregarSustento()
 {
@@ -31,7 +31,7 @@ function ProcesaFormAgregarSustento()
 
     if ($bandera == 1)
     {       
-        $carpeta_destino = "media/"; 
+        $carpeta_destino = MEDIA_PATH;
         $array = UploadFile('archivo', $carpeta_destino, 200);
 
         if (isset($array[0]))

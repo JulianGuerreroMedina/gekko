@@ -1,0 +1,15 @@
+.git
+.gitignore
+.codex
+node_modules
+npm-debug.log
+yarn-error.log
+.DS_Store
+
+storage/tmp/*
+storage/sessions/*
+storage/logs/*
+!storage/tmp/.gitkeep
+!storage/sessions/.gitkeep
+!storage/logs/.gitkeep
+private/.env

@@ -1,0 +1,50 @@
+name: gekko
+
+services:
+  php:
+    build:
+      context: ..
+      dockerfile: docker/php/Dockerfile
+    container_name: gekko-php
+    restart: unless-stopped
+    working_dir: /var/www/app
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      TZ: America/Merida
+      APP_ENV: local
+    volumes:
+      - ../:/var/www/app:ro
+      - ../storage:/var/www/app/storage:rw
+      - ${CORE_PATH}:/var/www/app/private/core/:ro
+    networks:
+      - gekko_net
+      - dev_shared_net
+
+  nginx:
+    image: nginx:alpine
+    container_name: gekko-nginx
+    restart: unless-stopped
+    depends_on:
+      - php
+    ports:
+      - "8011:80"
+      - "8446:443"
+    volumes:
+      - ../:/var/www/app:ro
+      - ./ngnix/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./ngnix/certs:/etc/nginx/certs:ro
+
+      # Opcional: assets compartidos externos
+      # Ajusta estas rutas del host si las vas a usar
+      - ${CORE_JS_PATH}:/var/www/app/public/core.js/:ro
+      - ${CORE_ICONS_PATH}:/var/www/app/public/core.icons/:ro
+    networks:
+      - gekko_net
+
+networks:
+  gekko_net:
+    driver: bridge
+
+  dev_shared_net:
+    external: true
+    name: dev_shared_net

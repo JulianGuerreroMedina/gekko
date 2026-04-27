@@ -1,0 +1,7 @@
+ 
+openssl req -x509 -nodes -days 825 \
+  -newkey rsa:2048 \
+  -keyout dev.key \
+  -out dev.crt \
+  -subj "/C=MX/ST=Yucatan/L=Merida/O=LocalDev/CN=11.1.33.226" \
+  -addext "subjectAltName = IP:11.1.33.226,DNS:localhost"

@@ -126,13 +126,13 @@ nav
     margin: 20px 0;
 }
 
-.btn-plus{display: inline-block; width:22px; height: 22px; background: url(/public/img/btn-plus.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
-.btn-edit{display: inline-block; width:22px; height: 22px; background: url(/public/img/btn-edit.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
-.trash{display: inline-block; width:22px; height: 22px; background: url(/public/img/trash.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
-.btn-toggle-on{display: inline-block; width:22px; height: 22px; background: url(/public/img/btn-toggle-on.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
-.btn-toggle-off{display: inline-block; width:22px; height: 22px; background: url(/public/img/btn-toggle-off.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
-.calendar-cancel{display: inline-block; width:22px; height: 22px; background: url(/public/img/calendar-cancel.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
-.file-upload{display: inline-block; width:24px; height: 30px; background: url(/public/img/file-upload.svg) no-repeat center center; background-size: 24px 30px; margin:0px}
+.btn-plus{display: inline-block; width:22px; height: 22px; background: url(/img/btn-plus.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
+.btn-edit{display: inline-block; width:22px; height: 22px; background: url(/img/btn-edit.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
+.trash{display: inline-block; width:22px; height: 22px; background: url(/img/trash.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
+.btn-toggle-on{display: inline-block; width:22px; height: 22px; background: url(/img/btn-toggle-on.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
+.btn-toggle-off{display: inline-block; width:22px; height: 22px; background: url(/img/btn-toggle-off.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
+.calendar-cancel{display: inline-block; width:22px; height: 22px; background: url(/img/calendar-cancel.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
+.file-upload{display: inline-block; width:24px; height: 30px; background: url(/img/file-upload.svg) no-repeat center center; background-size: 24px 30px; margin:0px}
 
 .abm_thumb {
     text-align: center;

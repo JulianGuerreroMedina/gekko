@@ -5,12 +5,12 @@ $link = '';
 if (empty($GLOBALS['ruta_1']))
 {
     //VerPagina("xxxxx");
-    include 'private/apps/adminControl.php';
+    include APP_ROOT . '/private/apps/adminControl.php';
     $GLOBALS['TituloPagina']="Administrador";
-    $GLOBALS['Link'] = '<script src="{UrlBase}/public/js/admin.js{VerCache}"></script>';
-    $GLOBALS['Link'] .= '<script src="{UrlBase}/public/js/UploadFile.js{VerCache}"></script>';
+    $GLOBALS['Link'] = '<script src="{Asset:/js/admin.js}"></script>';
+    $GLOBALS['Link'] .= '<script src="{Asset:/js/UploadFile.js}"></script>';
     $GLOBALS['Contenido']= AdminControl();
-    $GLOBALS['layout'] = file_get_contents("private/vistas/layout_admin.html");
+    $GLOBALS['layout'] = file_get_contents(VIEWS_PATH . '/layout_admin.html');
     echo IntegraLayout();
     exit();
 } else

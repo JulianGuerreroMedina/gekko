@@ -15,37 +15,37 @@ $funcion = trim($_POST['funcion'] ?? '');
 switch ($funcion) {
     
     case 'ProcesaFrmBorrarMultimedia':
-        include 'private/apps/ABM_multimedia.php';
+        include APP_ROOT . '/private/apps/ABM_multimedia.php';
         echo json_encode(ProcesaFrmBorrarMultimedia());
         return;
 
     case 'frmSetear':
-        include 'private/apps/ABM_multimedia.php';
+        include APP_ROOT . '/private/apps/ABM_multimedia.php';
         echo (frmSetear());
         return;
 
     case 'ListaMultimedia':
-        include 'private/apps/adminControl.php';
+        include APP_ROOT . '/private/apps/adminControl.php';
         echo json_encode(ListaMultimedia());
         return;
 
     case 'ProcesaFrmAbmMultimedia':
-        include 'private/apps/ABM_multimedia.php';
+        include APP_ROOT . '/private/apps/ABM_multimedia.php';
         echo json_encode(ProcesaFrmAbmMultimedia());
         return;
 
     case 'FrmAbmMultimedia':
-        include 'private/apps/ABM_multimedia.php';
+        include APP_ROOT . '/private/apps/ABM_multimedia.php';
         echo (FrmAbmMultimedia());
         return;
 
     case 'ProcesaFormAgregarSustento':
-        include 'private/apps/CargarArchivoMultimedia.php';
+        include APP_ROOT . '/private/apps/CargarArchivoMultimedia.php';
         echo json_encode(ProcesaFormAgregarSustento());
         return;
 
     case 'FormAgregarSustento':
-        include 'private/apps/CargarArchivoMultimedia.php';
+        include APP_ROOT . '/private/apps/CargarArchivoMultimedia.php';
         echo (FormAgregarSustento());
         return;
 

@@ -13,7 +13,7 @@ $funcion = trim($_POST['funcion'] ?? '');
 switch ($funcion) {
 
     case 'Instantaneas':
-        include 'private/apps/InstantaneasControl.php';
+        include APP_ROOT . '/private/apps/InstantaneasControl.php';
         print json_encode(Instantaneas());
         return;
 
