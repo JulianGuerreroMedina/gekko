@@ -81,8 +81,9 @@ CORE_ICONS_PATH=/ruta/local/al/core.icons
 ```
 
 Docker Compose monta esas rutas dentro del contenedor como `private/core`,
-`public/core.js` y `public/core.icons`. Si alguna variable queda vacia o apunta
-a una ruta inexistente, Docker Compose no podra iniciar correctamente.
+`public/assets/core.js` y `public/assets/core.icons`. Si alguna variable queda
+vacia o apunta a una ruta inexistente, Docker Compose no podra iniciar
+correctamente.
 
 Si no existen certificados locales, generarlos antes de levantar Nginx:
 
@@ -116,9 +117,10 @@ dependencias compartidas externas.
 ```text
 public/
   index.php        Front controller
-  css/             Estilos publicos
-  js/              Scripts publicos
-  img/             Iconos e imagenes de UI
+  assets/
+    css/           Estilos publicos
+    js/            Scripts publicos
+    img/           Iconos e imagenes de UI
   media/           Multimedia publica
 
 private/

@@ -36,8 +36,8 @@ services:
 
       # Opcional: assets compartidos externos
       # Ajusta estas rutas del host si las vas a usar
-      - ${CORE_JS_PATH}:/var/www/app/public/core.js/:ro
-      - ${CORE_ICONS_PATH}:/var/www/app/public/core.icons/:ro
+      - ${CORE_JS_PATH}:/var/www/app/public/assets/core.js/:ro
+      - ${CORE_ICONS_PATH}:/var/www/app/public/assets/core.icons/:ro
     networks:
       - gekko_net
 

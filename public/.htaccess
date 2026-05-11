@@ -9,6 +9,10 @@ ErrorDocument 404 /error404.php
 
 RewriteEngine On
 
+RewriteRule ^core\.js/(.*)$ assets/core.js/$1 [QSA,L]
+RewriteRule ^core\.icons/(.*)$ assets/core.icons/$1 [QSA,L]
+RewriteRule ^(js|css|img|chart)/(.*)$ assets/$1/$2 [QSA,L]
+
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
