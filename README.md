@@ -88,7 +88,7 @@ correctamente.
 Si no existen certificados locales, generarlos antes de levantar Nginx:
 
 ```bash
-cd docker/ngnix/certs
+cd docker/nginx/certs
 sh generador_certificados
 ```
 
@@ -140,7 +140,7 @@ storage/
 
 docker/
   docker-compose.yml
-  ngnix/default.conf
+  nginx/default.conf
   php/Dockerfile
 ```
 
