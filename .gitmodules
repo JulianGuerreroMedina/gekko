@@ -1,0 +1,9 @@
+[submodule "private/core"]
+	path = private/core
+	url = git@github.com:JulianGuerreroMedina/Core.git
+[submodule "public/assets/core.js"]
+	path = public/assets/core.js
+	url = git@github.com:JulianGuerreroMedina/core.js.git
+[submodule "public/assets/core.icons"]
+	path = public/assets/core.icons
+	url = git@github.com:JulianGuerreroMedina/Core.icons.git

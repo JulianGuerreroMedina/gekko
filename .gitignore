@@ -4,7 +4,6 @@ VerCache.conf
 # Configuracion local
 private/.env
 docker/.env
-private/core
 public/core.js
 public/core.icons
 
