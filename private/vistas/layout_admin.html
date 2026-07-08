@@ -8,7 +8,8 @@
 <meta name="csrf-token" content="{csrf_token}">
 <link rel="icon" href="{Asset:/favicon.svg}" type="image/x-icon" />
 <link rel="shortcut icon" href="{Asset:/favicon.svg}" type="image/x-icon"/>
-<link rel="stylesheet" type="text/css" href="{Asset:/core.js/core.css}"/>
+<link rel="stylesheet" type="text/css" href="{Asset:/core-web-kit/ui/core-modal.css}"/>
+<link rel="stylesheet" type="text/css" href="{Asset:/core-web-kit/ui/core-ui.css}"/>
 <link rel="stylesheet" type="text/css" href="{Asset:/css/admin.css}"/>{link}
 </head>
 <body>
@@ -19,9 +20,10 @@
         </a>
     </div>
     <nav>Gekko</nav>
-</header>    
+</header>
 <div id="contenido">{contenido}</div>
-<script src="{Asset:/core.js/core.js}"></script>
-<script src="{Asset:/core.js/csrf.js}"></script>
+<script src="{Asset:/core-web-kit/runtime/core-modal.js}"></script>
+<script src="{Asset:/core-web-kit/runtime/core-utils.js}"></script>
+<script src="{Asset:/core-web-kit/auth/csrf.js}"></script>
 </body>
 </html>

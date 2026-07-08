@@ -24,7 +24,7 @@ document root y almacenamiento de runtime separado.
 - PHP 8.2 o superior si se ejecuta fuera de Docker.
 - Extensiones PHP: `mysqli`, `pdo_mysql`, `mbstring`, `gd`, `zip`, `xml`,
   `sqlite3`, `pdo_sqlite`, `exif` y `opcache`.
-- Submódulos Git inicializados en `private/core`, `public/assets/core.js` y
+- Submódulos Git inicializados en `private/core`, `public/assets/core-web-kit` y
   `public/assets/core.icons`.
 
 ## Configuracion
