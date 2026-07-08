@@ -22,3 +22,5 @@ storage/tmp/*
 # Certificados locales generados
 docker/ngnix/certs/*.crt
 docker/ngnix/certs/*.key
+
+.codebase-memory/
