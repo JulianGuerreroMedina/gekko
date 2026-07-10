@@ -133,6 +133,7 @@ nav
 .btn-toggle-off{display: inline-block; width:22px; height: 22px; background: url(/assets/img/btn-toggle-off.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
 .calendar-cancel{display: inline-block; width:22px; height: 22px; background: url(/assets/img/calendar-cancel.svg) no-repeat center center; background-size: 22px 22px; margin:0px 2px;}
 .file-upload{display: inline-block; width:24px; height: 30px; background: url(/assets/img/file-upload.svg) no-repeat center center; background-size: 24px 30px; margin:0px}
+.ico-loading{display: inline-block; width:32px; height: 32px; background: url(/assets/img/ico-loading.svg) no-repeat center center; background-size: 32px 32px; margin:0px 2px;}
 
 .abm_thumb {
     text-align: center;

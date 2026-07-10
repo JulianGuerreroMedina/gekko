@@ -4,6 +4,3 @@
 [submodule "public/assets/core-web-kit"]
 	path = public/assets/core-web-kit
 	url = git@github.com:JulianGuerreroMedina/core-web-kit.git
-[submodule "public/assets/core.icons"]
-	path = public/assets/core.icons
-	url = git@github.com:JulianGuerreroMedina/Core.icons.git
