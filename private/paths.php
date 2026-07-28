@@ -26,14 +26,6 @@ if (!defined('CORE_PATH')) {
     define('CORE_PATH', PRIVATE_PATH . '/core');
 }
 
-if (!defined('CONTROLLERS_PATH')) {
-    define('CONTROLLERS_PATH', PRIVATE_PATH . '/Controllers');
-}
-
-if (!defined('API_PATH')) {
-    define('API_PATH', PRIVATE_PATH . '/api');
-}
-
 if (!defined('LIBS_PATH')) {
     define('LIBS_PATH', PRIVATE_PATH . '/libs');
 }

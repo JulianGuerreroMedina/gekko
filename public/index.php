@@ -9,4 +9,7 @@ chdir(APP_ROOT);
 
 require_once PRIVATE_PATH . '/ConfigBD.php';
 
+define('APP_ROUTER_MODE', 'custom');
+define('APP_ROUTER_PATH', PRIVATE_PATH . '/router.php');
+
 require_once CORE_PATH . '/autoload.php';

@@ -17,6 +17,8 @@ document root y almacenamiento de runtime separado.
 - Los archivos multimedia se sirven desde `public/media`.
 - Los logs, sesiones, temporales y documentos privados se guardan en `storage/`.
 - Se agrego soporte Docker para PHP-FPM 8.2 y Nginx con SSL de desarrollo.
+- El router de aplicación se activa mediante `APP_ROUTER_MODE=custom` y
+  `APP_ROUTER_PATH`, mediante el hook opt-in disponible en `private/core`.
 
 ## Requisitos
 
@@ -112,8 +114,8 @@ public/
   media/           Multimedia publica
 
 private/
-  Controllers/     Controladores de paginas
-  api/             Endpoints internos
+  router.php       Registro y despacho de rutas de Gekko
+  router/          Middleware y handlers web/API
   apps/            Logica de aplicacion
   etc/paths.php    Constantes de rutas
   libs/            Librerias locales
@@ -131,6 +133,26 @@ docker/
   nginx/default.conf
   php/Dockerfile
 ```
+
+## Rutas y APIs
+
+El registro activo se encuentra en `private/router.php`:
+
+| Ruta | Handler | Método |
+|---|---|---|
+| `/` y `/main` | `gekko_handler_main` | GET |
+| `/admin` | `gekko_handler_admin` | GET |
+| `/salir` | `Salir()` del core | GET |
+| `/api/admin` | `gekko_manejar_api('admin')` | POST |
+| `/api/instantaneas` | `gekko_manejar_api('instantaneas')` | POST |
+
+Las APIs mantienen el campo `funcion`, las respuestas existentes y la
+validación CSRF del core. La autenticación sigue desactivada en las rutas que
+ya la tenían comentada; activarla debe tratarse como un cambio de seguridad
+separado.
+
+La guía general para repetir esta migración está disponible en
+`private/core/MIGRACION_ROUTER_APLICACIONES.md`.
 
 ## Notas de seguridad
 
